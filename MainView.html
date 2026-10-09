@@ -4,115 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>图书馆管理系统 - 管理员登录与注册</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 600px;
-            background: #fff;
-            border-radius: 16px;
-            box-shadow: 0 25px 60px rgba(0,0,0,0.3);
-            overflow: hidden;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #5a67d8, #6b46c1);
-            color: #fff;
-            padding: 30px;
-            text-align: center;
-        }
-        .header h1 { font-size: 26px; margin-bottom: 6px; }
-        .header p { font-size: 14px; opacity: 0.7; }
-
-        .tab-bar {
-            display: flex;
-            background: #f0f2f5;
-            border-bottom: 1px solid #e0e0e0;
-        }
-        .tab {
-            flex: 1; padding: 14px; text-align: center; cursor: pointer;
-            border: none; background: none; font-size: 16px; font-weight: 600;
-            color: #888; transition: all 0.3s;
-        }
-        .tab.active { color: #5a67d8; border-bottom: 3px solid #5a67d8; }
-
-        .form-panel { display: none; padding: 30px; }
-        .form-panel.active { display: block; }
-
-        h2 { color: #5a67d8; margin-bottom: 20px; font-size: 20px; }
-
-        .form-group { margin-bottom: 18px; }
-
-        label { display: block; margin-bottom: 6px; font-weight: 600; color: #333; font-size: 14px; }
-        label .star { color: #e74c3c; }
-
-        input[type="text"], input[type="password"], input[type="email"],
-        input[type="date"], input[list], select {
-            width: 100%; padding: 11px 14px; border: 2px solid #e0e0e0;
-            border-radius: 8px; font-size: 15px; transition: border-color 0.3s;
-            outline: none;
-        }
-        input:focus, select:focus { border-color: #5a67d8; }
-
-        .row { display: flex; gap: 15px; }
-        .row .form-group { flex: 1; }
-
-        .radio-group, .check-group {
-            display: flex; flex-wrap: wrap; gap: 16px; margin-top: 4px;
-        }
-        .radio-item, .check-item {
-            display: flex; align-items: center; gap: 6px; font-size: 14px;
-        }
-
-        input[type="range"] { width: 100%; margin-top: 6px; }
-        .range-info { display: flex; justify-content: space-between; font-size: 12px; color: #888; margin-top: 3px; }
-
-        progress { width: 100%; height: 22px; border-radius: 11px; }
-        progress::-webkit-progress-bar { background: #f0f0f0; border-radius: 11px; }
-        progress::-webkit-progress-value { background: linear-gradient(90deg, #3498db, #2ecc71); border-radius: 11px; }
-
-        .progress-box { background: #f8f9fa; border-radius: 10px; padding: 16px; margin-bottom: 18px; }
-        .progress-box label { margin-bottom: 8px; }
-
-        .btn {
-            width: 100%; padding: 13px; border: none; border-radius: 8px;
-            background: linear-gradient(135deg, #5a67d8, #6b46c1);
-            color: #fff; font-size: 17px; font-weight: 600;
-            cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(26,26,46,0.3); }
-
-        .msg { margin-top: 14px; padding: 10px; border-radius: 6px; text-align: center; font-size: 14px; }
-        .msg-error { background: #fdecea; color: #c0392b; border: 1px solid #e74c3c; }
-        .msg-success { background: #e8f8f5; color: #1e8449; border: 1px solid #2ecc71; }
-
-        .avatar-preview { text-align: center; margin-top: 8px; }
-        .avatar-preview img {
-            width: 90px; height: 90px; border-radius: 50%;
-            object-fit: cover; border: 3px solid #5a67d8;
-        }
-
-        .music-box {
-            margin-top: 8px; padding: 18px;
-            background: #f0f2f5; border-radius: 10px;
-        }
-        .music-box h3 { margin-bottom: 12px; font-size: 15px; color: #5a67d8; }
-        .music-row { display: flex; align-items: center; gap: 10px; }
-        .music-row input[type="range"] { flex: 1; }
-
-        .footer { text-align: center; padding: 16px; background: #f0f2f5; color: #888; font-size: 12px; border-top: 1px solid #e0e0e0; }
-    </style>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/components.css">
 </head>
 <body>
 <div class="container">
@@ -270,7 +165,7 @@
             <div class="progress-box">
                 <label>📊 注册进度</label>
                 <progress id="regProgress" value="0" max="100"></progress>
-                <div style="text-align:center; margin-top:6px; font-weight:600;" id="progressText">0%</div>
+                <div class="progress-text" id="progressText">0%</div>
             </div>
 
             <!-- file：上传头像 -->
@@ -292,8 +187,8 @@
             <label for="bgMusic">选择音乐文件:</label>
             <input type="file" id="bgMusic" accept="audio/*" onchange="loadMusic()">
         </div>
-        <button onclick="toggleMusic()" id="musicBtn" class="btn" style="width:auto; padding:8px 20px; font-size:14px;">▶ 播放</button>
-        <div class="music-row" style="margin-top:10px;">
+        <button onclick="toggleMusic()" id="musicBtn" class="btn btn-compact">▶ 播放</button>
+        <div class="music-row music-row-spaced">
             <span>🔈</span>
             <input type="range" id="musicVol" min="0" max="1" step="0.1" value="0.5" oninput="setVol()">
             <span>🔊</span>
