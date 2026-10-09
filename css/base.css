@@ -1,9 +1,13 @@
+/* base.css：全局基础样式，包括默认重置、字体、页面背景和整体居中布局。 */
+
+/* 清除所有元素的默认外边距和内边距，并统一使用 border-box 盒模型。 */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* 设置页面默认字体、渐变背景，并让主要内容在视口中水平和垂直居中。 */
 body {
     font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);

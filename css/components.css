@@ -1,19 +1,25 @@
+/* components.css：可复用组件样式，包括进度条、按钮、消息、头像预览和音乐播放器。 */
+
+/* 原生进度条：设置整体宽度、高度和圆角。 */
 progress {
     width: 100%;
     height: 22px;
     border-radius: 11px;
 }
 
+/* WebKit 浏览器中的进度条底槽：设置浅灰色背景和圆角。 */
 progress::-webkit-progress-bar {
     background: #f0f0f0;
     border-radius: 11px;
 }
 
+/* WebKit 浏览器中的进度条已完成部分：使用蓝绿渐变和圆角。 */
 progress::-webkit-progress-value {
     background: linear-gradient(90deg, #3498db, #2ecc71);
     border-radius: 11px;
 }
 
+/* 进度区域容器：设置背景色、圆角、内边距和下方间距。 */
 .progress-box {
     background: #f8f9fa;
     border-radius: 10px;
@@ -21,16 +27,19 @@ progress::-webkit-progress-value {
     margin-bottom: 18px;
 }
 
+/* 进度区域中的标签：设置标签与进度条之间的间距。 */
 .progress-box label {
     margin-bottom: 8px;
 }
 
+/* 进度文字：居中显示，并设置上方间距和半粗体效果。 */
 .progress-text {
     text-align: center;
     margin-top: 6px;
     font-weight: 600;
 }
 
+/* 通用按钮：设置按钮尺寸、颜色、圆角、鼠标指针和悬停过渡效果。 */
 .btn {
     width: 100%;
     padding: 13px;
@@ -44,17 +53,20 @@ progress::-webkit-progress-value {
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
+/* 通用按钮悬停状态：按钮向上移动并显示阴影。 */
 .btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(26, 26, 46, 0.3);
 }
 
+/* 紧凑按钮：取消按钮的全宽布局，减小内边距和字号。 */
 .btn-compact {
     width: auto;
     padding: 8px 20px;
     font-size: 14px;
 }
 
+/* 通用消息提示：设置外边距、内边距、圆角、居中对齐和字号。 */
 .msg {
     margin-top: 14px;
     padding: 10px;
@@ -63,23 +75,27 @@ progress::-webkit-progress-value {
     font-size: 14px;
 }
 
+/* 错误消息：使用浅红色背景、深红色文字和红色边框。 */
 .msg-error {
     background: #fdecea;
     color: #c0392b;
     border: 1px solid #e74c3c;
 }
 
+/* 成功消息：使用浅绿色背景、深绿色文字和绿色边框。 */
 .msg-success {
     background: #e8f8f5;
     color: #1e8449;
     border: 1px solid #2ecc71;
 }
 
+/* 头像预览容器：让头像居中，并设置与上方内容的间距。 */
 .avatar-preview {
     text-align: center;
     margin-top: 8px;
 }
 
+/* 头像预览图片：设置固定尺寸、圆形裁剪、适配方式和主题色边框。 */
 .avatar-preview img {
     width: 90px;
     height: 90px;
@@ -88,6 +104,7 @@ progress::-webkit-progress-value {
     border: 3px solid #5a67d8;
 }
 
+/* 音乐组件容器：设置外边距、内边距、浅色背景和圆角。 */
 .music-box {
     margin-top: 8px;
     padding: 18px;
@@ -95,22 +112,26 @@ progress::-webkit-progress-value {
     border-radius: 10px;
 }
 
+/* 音乐组件标题：设置标题下方间距、字号和主题色。 */
 .music-box h3 {
     margin-bottom: 12px;
     font-size: 15px;
     color: #5a67d8;
 }
 
+/* 音乐控件行：使用横向弹性布局，让控件垂直居中并设置间距。 */
 .music-row {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
+/* 需要与上一行拉开距离的音乐控件行。 */
 .music-row-spaced {
     margin-top: 10px;
 }
 
+/* 音乐控件行中的范围输入框：占据剩余可用宽度。 */
 .music-row input[type="range"] {
     flex: 1;
 }

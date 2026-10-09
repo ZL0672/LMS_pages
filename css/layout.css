@@ -1,3 +1,6 @@
+/* layout.css：页面结构布局样式，包括容器、页头、标签栏、表单面板和页脚。 */
+
+/* 页面主体容器：限制最大宽度，设置白色背景、圆角、阴影并隐藏溢出内容。 */
 .container {
     width: 100%;
     max-width: 600px;
@@ -7,6 +10,7 @@
     overflow: hidden;
 }
 
+/* 页面头部：使用渐变背景，设置白色文字、内边距并让内容居中。 */
 .header {
     background: linear-gradient(135deg, #5a67d8, #6b46c1);
     color: #fff;
@@ -14,22 +18,26 @@
     text-align: center;
 }
 
+/* 页头主标题：设置标题字号和下方间距。 */
 .header h1 {
     font-size: 26px;
     margin-bottom: 6px;
 }
 
+/* 页头说明文字：设置较小字号并降低透明度。 */
 .header p {
     font-size: 14px;
     opacity: 0.7;
 }
 
+/* 标签导航栏：使用横向弹性布局，并设置浅色背景和底部边框。 */
 .tab-bar {
     display: flex;
     background: #f0f2f5;
     border-bottom: 1px solid #e0e0e0;
 }
 
+/* 单个标签：平均分配宽度，设置文字居中、鼠标指针和过渡效果。 */
 .tab {
     flex: 1;
     padding: 14px;
@@ -43,20 +51,24 @@
     transition: all 0.3s;
 }
 
+/* 当前选中的标签：使用主题色文字和底部边框突出显示。 */
 .tab.active {
     color: #5a67d8;
     border-bottom: 3px solid #5a67d8;
 }
 
+/* 表单面板默认隐藏，并设置内容区域的内边距。 */
 .form-panel {
     display: none;
     padding: 30px;
 }
 
+/* 当前激活的表单面板：显示其内容。 */
 .form-panel.active {
     display: block;
 }
 
+/* 页面页脚：设置文字居中、背景色、文字颜色和顶部边框。 */
 .footer {
     text-align: center;
     padding: 16px;
