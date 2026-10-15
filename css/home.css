@@ -1,0 +1,260 @@
+/* home.css：网站首页专属样式（页头 logo 导航、hero 介绍区、登录卡片、页脚）。
+   依赖：base.css（全局重置与渐变背景）、forms.css（表单控件）、components.css（按钮/消息）。 */
+
+/* 首页 body：覆盖 base.css 的"单卡片居中"布局，改为整页纵向排布。 */
+body.home-body {
+    display: block;
+    padding: 0;
+}
+
+/* ========== 页头：logo + 站名 + 导航（实验4 要求1） ========== */
+
+/* 吸顶页头：半透明白底 + 毛玻璃效果。 */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 32px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* 页头 logo 图片。 */
+.site-logo {
+    width: 44px;
+    height: 44px;
+}
+
+/* 站点名称：中文名 + 英文小字，占据剩余宽度把导航推到右侧。 */
+.site-name {
+    margin-right: auto;
+    font-size: 20px;
+    font-weight: 700;
+    color: #3c366b;
+    line-height: 1.2;
+}
+
+.site-name small {
+    display: block;
+    font-size: 10px;
+    font-weight: 400;
+    color: #8b93b8;
+    letter-spacing: 2px;
+}
+
+/* 页头导航链接：胶囊形按钮样式。 */
+.site-nav {
+    display: flex;
+    gap: 8px;
+}
+
+.site-nav a {
+    padding: 8px 18px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    color: #5a67d8;
+    transition: all 0.25s;
+}
+
+.site-nav a:hover {
+    background: #eef0fd;
+}
+
+/* 导航中的主操作（注册）：渐变底色反白。 */
+.site-nav a.nav-primary {
+    background: linear-gradient(135deg, #5a67d8, #6b46c1);
+    color: #fff;
+}
+
+.site-nav a.nav-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(90, 103, 216, 0.4);
+}
+
+/* ========== 主区域：左侧系统介绍 + 右侧登录卡片 ========== */
+
+.hero {
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: 56px 24px 64px;
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    flex-wrap: wrap;
+}
+
+/* 左侧介绍区：白色文字叠在 body 渐变背景上。 */
+.hero-intro {
+    flex: 1 1 420px;
+    color: #fff;
+}
+
+.hero-intro h1 {
+    font-size: 42px;
+    line-height: 1.25;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+}
+
+.hero-intro .lead {
+    margin-top: 16px;
+    max-width: 520px;
+    font-size: 15px;
+    line-height: 1.8;
+    opacity: 0.92;
+}
+
+/* 功能特色卡片：半透明玻璃拟态小卡。 */
+.feature-list {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin: 26px 0 30px;
+}
+
+.feature-card {
+    flex: 1 1 150px;
+    padding: 14px 18px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(4px);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.feature-card strong {
+    display: block;
+    font-size: 15px;
+    margin-bottom: 4px;
+}
+
+/* CTA 按钮行：胶囊形链接按钮（动作伪类 :hover / :active）。 */
+.cta-row {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.cta {
+    display: inline-block;
+    padding: 13px 34px;
+    border-radius: 999px;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-decoration: none;
+    transition: all 0.25s;
+}
+
+.cta-primary {
+    background: #fff;
+    color: #5a67d8;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+}
+
+.cta-primary:hover {
+    color: #6b46c1;
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
+}
+
+.cta-primary:active {
+    transform: translateY(1px);
+}
+
+.cta-ghost {
+    border: 2px solid rgba(255, 255, 255, 0.85);
+    color: #fff;
+}
+
+.cta-ghost:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+.cta-ghost:active {
+    transform: translateY(1px);
+}
+
+/* ========== 右侧登录卡片（登录内容包含在首页中，作业允许） ========== */
+
+.login-card {
+    flex: 0 1 380px;
+    margin-left: auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+    /* 锚点 #login 定位时给吸顶页头留出空间 */
+    scroll-margin-top: 84px;
+}
+
+/* 与注册页保持一致：文本输入框获得焦点时的强化效果（实验4 要求3）。 */
+.login-card input[type="text"]:focus,
+.login-card input[type="password"]:focus,
+.login-card select:focus {
+    border-width: 3px;      /* 边框加粗 */
+    padding: 10px 13px;     /* 补偿 1px，避免边框加粗引起抖动 */
+    text-align: center;     /* 输入文本居中显示 */
+    color: #5a67d8;         /* 文本颜色 */
+    border-color: #5a67d8;
+    background-color: #f7f8ff;
+    box-shadow: 0 0 0 4px rgba(90, 103, 216, 0.15);
+}
+
+/* 登录卡片底部提示：前往注册页的链接。 */
+.login-tip {
+    margin-top: 16px;
+    text-align: center;
+    font-size: 13px;
+    color: #888;
+}
+
+.login-tip a {
+    color: #5a67d8;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px dashed #5a67d8;
+    transition: all 0.25s;
+}
+
+.login-tip a:hover {
+    color: #e74c3c;
+    border-bottom-color: #e74c3c;
+}
+
+/* ========== 页脚 ========== */
+
+.site-footer {
+    padding: 18px;
+    background: rgba(0, 0, 0, 0.18);
+    color: rgba(255, 255, 255, 0.85);
+    text-align: center;
+    font-size: 13px;
+}
+
+.site-footer a {
+    color: #fff;
+}
+
+/* ========== 响应式：窄屏时登录卡片居中 ========== */
+
+@media (max-width: 860px) {
+    .hero {
+        padding-top: 36px;
+    }
+
+    .hero-intro h1 {
+        font-size: 32px;
+    }
+
+    .login-card {
+        margin: 0 auto;
+    }
+}

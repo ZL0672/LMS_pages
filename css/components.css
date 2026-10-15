@@ -39,31 +39,43 @@ progress::-webkit-progress-value {
     font-weight: 600;
 }
 
-/* 通用按钮：设置按钮尺寸、颜色、圆角、鼠标指针和悬停过渡效果。 */
+/* 通用按钮（实验4 要求4）：椭圆形（胶囊形）边角 + 加宽字距的文本显示格式。 */
 .btn {
     width: 100%;
     padding: 13px;
     border: none;
-    border-radius: 8px;
+    border-radius: 999px;                /* 要求4：边角改为椭圆形设计（胶囊形） */
     background: linear-gradient(135deg, #5a67d8, #6b46c1);
     color: #fff;
     font-size: 17px;
-    font-weight: 600;
+    font-weight: 700;                    /* 要求4：改变文本显示格式——加粗 */
+    letter-spacing: 6px;                 /* 要求4：改变文本显示格式——加宽字距 */
+    text-indent: 6px;                    /* 补偿字距造成的右侧空隙，保持文字视觉居中 */
     cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
 }
 
-/* 通用按钮悬停状态：按钮向上移动并显示阴影。 */
+/* 动作伪类 :hover —— 悬停时上浮、增亮并显示阴影。 */
 .btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(26, 26, 46, 0.3);
+    filter: brightness(1.08);
 }
 
-/* 紧凑按钮：取消按钮的全宽布局，减小内边距和字号。 */
+/* 动作伪类 :active —— 按下时下沉缩小、略微压暗，产生按压反馈。 */
+.btn:active {
+    transform: translateY(1px) scale(0.98);
+    box-shadow: none;
+    filter: brightness(0.95);
+}
+
+/* 紧凑按钮：取消按钮的全宽布局，减小内边距、字号和字距。 */
 .btn-compact {
     width: auto;
     padding: 8px 20px;
     font-size: 14px;
+    letter-spacing: 2px;
+    text-indent: 2px;
 }
 
 /* 通用消息提示：设置外边距、内边距、圆角、居中对齐和字号。 */

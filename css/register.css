@@ -1,0 +1,228 @@
+/* register.css：注册页（register.html）专属样式。
+   本文件集中实现实验4的要求 2、3、6、7、8（要求 4、5 分别见
+   components.css 的按钮样式与 register.html 中的 placeholder 属性）。
+   依赖：base.css、forms.css、components.css。 */
+
+/* 注册页 body：表单较长，改为纵向排布并从顶部开始（覆盖 base.css 的垂直居中）。 */
+body.register-body {
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 40px 20px 24px;
+}
+
+/* ========== 要求2：注册表单区域的背景图片与定位模式 ==========
+   背景图只铺在注册表单卡片（.register-card）内，不占据整个页面。 */
+.register-card {
+    width: 100%;
+    max-width: 640px;
+    padding-bottom: 28px;
+    border-radius: 18px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+
+    /* --- 背景图片各项属性（定位模式演示） --- */
+    background-color: #ffffff;                        /* 图片未加载时的兜底底色 */
+    background-image: url("../img/register-bg.svg");  /* 背景图片：书籍主题图案 */
+    background-repeat: no-repeat;                     /* 不平铺，只显示一次 */
+    background-position: right top;                   /* 定位模式：图片贴卡片右上角 */
+    background-size: 340px auto;                      /* 缩放模式：宽 340px，高度等比，只覆盖卡片局部 */
+    background-origin: padding-box;                   /* 定位基准：内边距盒 */
+    background-attachment: scroll;                    /* 附着模式：随页面滚动 */
+}
+
+/* ========== 卡片页头：logo + 标题 + 返回首页按钮 ========== */
+
+.reg-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 30px;
+    background: linear-gradient(135deg, #5a67d8, #6b46c1);
+    color: #fff;
+}
+
+/* 页头 logo：白底圆形衬托，点击可回首页。 */
+.reg-header .reg-logo img {
+    display: block;
+    width: 52px;
+    height: 52px;
+    padding: 4px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform 0.25s;
+}
+
+.reg-header .reg-logo:hover img {
+    transform: rotate(-8deg) scale(1.06);
+}
+
+.reg-header h1 {
+    font-size: 22px;
+    margin-bottom: 2px;
+}
+
+.reg-header p {
+    font-size: 12px;
+    opacity: 0.75;
+    letter-spacing: 1px;
+}
+
+/* ========== 要求8：返回首页按钮 + 动作伪类（:hover / :active） ========== */
+
+.btn-home {
+    margin-left: auto;
+    padding: 9px 18px;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-radius: 999px;                 /* 椭圆形（胶囊形）边角 */
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s;
+}
+
+/* 动作伪类 :hover —— 鼠标悬停时反白并上浮。 */
+.btn-home:hover {
+    background: #fff;
+    color: #5a67d8;
+    border-color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* 动作伪类 :active —— 鼠标按下时下沉缩小，产生"按压"反馈。 */
+.btn-home:active {
+    transform: translateY(1px) scale(0.95);
+    background: #e6e9fb;
+    box-shadow: none;
+}
+
+/* ========== 表单区域 ========== */
+
+.register-card form {
+    padding: 26px 30px 0;
+}
+
+/* ========== 要求3：所有文本输入框获得焦点（:focus）时的效果 ========== */
+
+.register-card input[type="text"]:focus,
+.register-card input[type="password"]:focus,
+.register-card input[type="email"]:focus,
+.register-card input[type="date"]:focus,
+.register-card input[list]:focus,
+.register-card select:focus {
+    border-width: 3px;                    /* ① 边框加粗（2px → 3px） */
+    padding: 10px 13px;                   /*    内边距各减 1px，补偿加粗的边框，避免抖动 */
+    text-align: center;                   /* ② 输入文本居中显示 */
+    color: #5a67d8;                       /* ③ 文本颜色改为主题紫蓝色 */
+    border-color: #5a67d8;
+    background-color: #f7f8ff;
+    box-shadow: 0 0 0 4px rgba(90, 103, 216, 0.15);   /* 外发光圈强化焦点感 */
+}
+
+/* 未填写时 placeholder 提示文字的样式（要求5 的配套：预设填写要求更易读）。 */
+.register-card input::placeholder {
+    color: #b6bcc9;
+    font-size: 13px;
+}
+
+/* ========== 要求6：用户名输入框的 :enabled 伪类设计 ========== */
+
+/* :enabled —— 输入框处于"可用"状态（未被 disabled）时生效：
+   用淡蓝边框和淡蓝底区别于普通输入框，表示"可以输入"。 */
+#regUsername:enabled {
+    border-color: #a3bffa;
+    background-color: #fbfcff;
+}
+
+/* enabled 且已输入内容（placeholder 不再显示）时格式进一步变化：
+   绿色系表示"该项已填写完成"。 */
+#regUsername:enabled:not(:placeholder-shown) {
+    border-color: #2ecc71;
+    background-color: #f0fff4;
+    color: #1e8449;
+    font-weight: 600;
+}
+
+/* 对照演示：若输入框被禁用（disabled），显示灰色不可输入状态。 */
+#regUsername:disabled {
+    border-color: #e0e0e0;
+    background-color: #f0f0f0;
+    color: #aaa;
+    cursor: not-allowed;
+}
+
+/* ========== 要求7："登录页面"超级链接的链接伪类设计 ========== */
+
+/* 链接所在提示行。 */
+.login-link {
+    padding: 0 30px;
+    margin: 4px 0 18px;
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+}
+
+/* :link —— 未访问过的链接：主题色、虚线下划线。 */
+.login-link a:link {
+    display: inline-block;
+    color: #5a67d8;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px dashed #5a67d8;
+    padding: 2px 6px;
+    transition: all 0.25s;
+}
+
+/* :visited —— 已访问过的链接：变为紫色，提示用户"去过登录页"。 */
+.login-link a:visited {
+    color: #805ad5;
+    border-bottom-color: #805ad5;
+}
+
+/* :hover —— 鼠标悬停：变红、下划线加粗为实线、加浅色底。 */
+.login-link a:hover {
+    color: #e74c3c;
+    border-bottom: 2px solid #e74c3c;
+    background: #fff5f5;
+    transform: translateY(-1px);
+}
+
+/* :active —— 鼠标按下瞬间：深红色并下沉。 */
+.login-link a:active {
+    color: #c0392b;
+    transform: translateY(1px);
+}
+
+/* ========== 页脚（注册页内） ========== */
+
+.reg-footer {
+    margin-top: 18px;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 12px;
+    text-align: center;
+}
+
+.reg-footer a {
+    color: #fff;
+}
+
+/* ========== 响应式：窄屏时页头纵向堆叠 ========== */
+
+@media (max-width: 520px) {
+    .reg-header {
+        flex-wrap: wrap;
+        padding: 18px 20px;
+    }
+
+    .btn-home {
+        margin-left: 0;
+    }
+
+    .register-card form,
+    .login-link {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}

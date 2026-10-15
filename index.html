@@ -2,14 +2,95 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url=MainView.html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>图书馆管理系统</title>
+    <title>图书馆管理系统 - 首页</title>
+    <link rel="icon" href="img/logo.svg">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/home.css">
 </head>
-<body>
-    <p>正在打开页面……</p>
-    <script>
-        window.location.replace('MainView.html');
-    </script>
+<body class="home-body">
+
+<!-- ========== 页头：logo + 站名 + 导航（实验4 要求1：logo 与网站首页，可链接到登录/注册） ========== -->
+<header class="site-header">
+    <img class="site-logo" src="img/logo.svg" alt="图书馆管理系统 Logo">
+    <div class="site-name">图书馆管理系统<small>LIBRARY MANAGEMENT SYSTEM</small></div>
+    <nav class="site-nav">
+        <a href="index.html">首页</a>
+        <a href="#login">登录</a>
+        <a class="nav-primary" href="register.html">注册</a>
+    </nav>
+</header>
+
+<!-- ========== 主区域：左侧系统介绍 + 右侧登录表单 ========== -->
+<main class="hero">
+    <section class="hero-intro">
+        <h1>让每一次借阅<br>都井然有序</h1>
+        <p class="lead">
+            集图书借阅管理、馆藏检索与数据统计于一体的图书馆管理系统，
+            面向系统管理员、图书管理员与督导员提供一站式工作平台。
+        </p>
+        <div class="feature-list">
+            <div class="feature-card"><strong>📖 借阅管理</strong>借还、续借、逾期提醒全流程线上化</div>
+            <div class="feature-card"><strong>🔍 馆藏检索</strong>按书名、作者、ISBN 快速定位馆藏</div>
+            <div class="feature-card"><strong>📊 数据统计</strong>借阅报表与读者画像一目了然</div>
+        </div>
+        <div class="cta-row">
+            <a class="cta cta-primary" href="register.html">立即注册</a>
+            <a class="cta cta-ghost" href="#login">管理员登录</a>
+        </div>
+    </section>
+
+    <!-- 登录内容直接包含在网站首页中（作业允许）；注册为单独页面 register.html -->
+    <section class="login-card" id="login">
+        <h2>🔑 管理员登录</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="loginUsername"><span class="star">*</span> 用户名</label>
+                <input type="text" id="loginUsername" name="username" placeholder="请输入用户名" required>
+            </div>
+            <div class="form-group">
+                <label for="loginPassword"><span class="star">*</span> 密码</label>
+                <input type="password" id="loginPassword" name="password" placeholder="请输入密码（不少于6位）" required minlength="6">
+            </div>
+            <div class="form-group">
+                <label for="loginRole"><span class="star">*</span> 角色</label>
+                <select id="loginRole" name="role" required>
+                    <option value="">-- 请选择角色 --</option>
+                    <option value="admin">系统管理员</option>
+                    <option value="librarian">图书管理员</option>
+                    <option value="supervisor">督导员</option>
+                </select>
+            </div>
+            <button type="submit" class="btn">登 录</button>
+            <div id="loginMsg"></div>
+        </form>
+        <p class="login-tip">还没有账号？<a href="register.html">立即注册 →</a></p>
+    </section>
+</main>
+
+<footer class="site-footer">
+    &copy; 2026 图书馆管理系统 &nbsp;·&nbsp; <a href="register.html">管理员注册</a> &nbsp;·&nbsp; <a href="#login">登录</a>
+</footer>
+
+<script>
+    // ========== 登录提交（从实验3的 MainView.html 迁移至首页） ==========
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const u = document.getElementById('loginUsername').value;
+        const p = document.getElementById('loginPassword').value;
+        const r = document.getElementById('loginRole').value;
+        if (!u || !p || !r) return showMsg('loginMsg', '请填写所有必填项！', 'error');
+        if (p.length < 6) return showMsg('loginMsg', '密码长度不能少于6位！', 'error');
+        showMsg('loginMsg', '登录成功！欢迎回来，' + u + '！', 'success');
+        setTimeout(() => alert('登录成功！\n用户：' + u + '\n角色：' + r), 800);
+    });
+
+    function showMsg(id, msg, type) {
+        const el = document.getElementById(id);
+        el.innerHTML = '<div class="msg msg-' + type + '">' + msg + '</div>';
+    }
+</script>
 </body>
 </html>

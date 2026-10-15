@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理员注册 - 图书馆管理系统</title>
+    <link rel="icon" href="img/logo.svg">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/register.css">
+</head>
+<body class="register-body">
+
+<!-- 注册表单卡片：背景图片只铺在本卡片区域（实验4 要求2，样式见 css/register.css） -->
+<div class="register-card">
+
+    <!-- ========== 卡片页头：logo + 标题 + 返回首页按钮（实验4 要求8） ========== -->
+    <div class="reg-header">
+        <a class="reg-logo" href="index.html" title="返回首页">
+            <img src="img/logo.svg" alt="图书馆管理系统 Logo">
+        </a>
+        <div>
+            <h1>📝 管理员注册</h1>
+            <p>LIBRARY MANAGEMENT SYSTEM · REGISTER</p>
+        </div>
+        <!-- 要求8：返回首页按钮，动作伪类 :hover / :active 见 register.css 中 .btn-home -->
+        <button type="button" class="btn-home" onclick="location.href='index.html'">🏠 返回首页</button>
+    </div>
+
+    <!-- ========== 注册表单（内容沿用实验3，样式按实验4要求重新设计） ========== -->
+    <form id="registerForm">
+        <!-- 要求5：未填写时通过 placeholder 预设填写要求 -->
+        <div class="form-group">
+            <label for="regUsername"><span class="star">*</span> 用户名</label>
+            <!-- 要求6：本输入框的 :enabled 伪类样式见 register.css（输入内容后格式变化） -->
+            <input type="text" id="regUsername" name="username"
+                   placeholder="4~16位，以字母开头，可含字母、数字或下划线"
+                   required minlength="4" maxlength="16">
+        </div>
+
+        <div class="form-group">
+            <label for="regEmail"><span class="star">*</span> 邮箱</label>
+            <input type="email" id="regEmail" name="email"
+                   placeholder="请输入有效邮箱，如：reader@library.com" required>
+        </div>
+
+        <div class="form-group">
+            <label for="regPassword"><span class="star">*</span> 密码</label>
+            <input type="password" id="regPassword" name="password"
+                   placeholder="6~16位，须同时包含字母和数字两种组合"
+                   required minlength="6" maxlength="16">
+        </div>
+
+        <div class="form-group">
+            <label for="regConfirm"><span class="star">*</span> 确认密码</label>
+            <input type="password" id="regConfirm" name="confirm"
+                   placeholder="请再次输入与上面相同的密码" required>
+        </div>
+
+        <!-- 日期选择 -->
+        <div class="form-group">
+            <label for="regBirthday"><span class="star">*</span> 出生日期</label>
+            <input type="date" id="regBirthday" name="birthday" required>
+        </div>
+
+        <!-- 单选：性别 -->
+        <div class="form-group">
+            <label><span class="star">*</span> 性别</label>
+            <div class="radio-group">
+                <div class="radio-item">
+                    <input type="radio" id="male" name="gender" value="male" required>
+                    <label for="male">男</label>
+                </div>
+                <div class="radio-item">
+                    <input type="radio" id="female" name="gender" value="female">
+                    <label for="female">女</label>
+                </div>
+                <div class="radio-item">
+                    <input type="radio" id="other" name="gender" value="other">
+                    <label for="other">其他</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- 多选：兴趣爱好 -->
+        <div class="form-group">
+            <label>兴趣爱好</label>
+            <div class="check-group">
+                <div class="check-item">
+                    <input type="checkbox" id="fiction" name="interests" value="小说">
+                    <label for="fiction">小说</label>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" id="science" name="interests" value="科普">
+                    <label for="science">科普</label>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" id="history" name="interests" value="历史">
+                    <label for="history">历史</label>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" id="tech" name="interests" value="技术">
+                    <label for="tech">技术</label>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" id="biography" name="interests" value="传记">
+                    <label for="biography">传记</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- 下拉选择：部门 -->
+        <div class="form-group">
+            <label for="regDept"><span class="star">*</span> 所属部门</label>
+            <select id="regDept" name="dept" required>
+                <option value="">-- 请选择部门 --</option>
+                <option value="admin">行政管理部</option>
+                <option value="circulation">流通部</option>
+                <option value="acquisition">采编部</option>
+                <option value="reference">参考咨询部</option>
+                <option value="tech">技术服务部</option>
+            </select>
+        </div>
+
+        <!-- datalist：会员类型 -->
+        <div class="form-group">
+            <label for="regMemType"><span class="star">*</span> 会员类型</label>
+            <input list="memTypes" id="regMemType" name="memtype"
+                   placeholder="点击右侧箭头选择，或直接输入会员类型" required>
+            <datalist id="memTypes">
+                <option value="学生会员">
+                <option value="教师会员">
+                <option value="研究生会员">
+                <option value="社会会员">
+                <option value="终身会员">
+                <option value="荣誉会员">
+            </datalist>
+        </div>
+
+        <!-- range滑块：工作经验 -->
+        <div class="form-group">
+            <label>图书馆工作经验: <strong id="expVal">0</strong> 年</label>
+            <input type="range" id="regExp" name="exp" min="0" max="30" value="0"
+                   oninput="document.getElementById('expVal').textContent = this.value">
+            <div class="range-info"><span>0年</span><span>15年</span><span>30年</span></div>
+        </div>
+
+        <!-- progress：注册进度 -->
+        <div class="progress-box">
+            <label>📊 注册进度</label>
+            <progress id="regProgress" value="0" max="100"></progress>
+            <div class="progress-text" id="progressText">0%</div>
+        </div>
+
+        <!-- file：上传头像 -->
+        <div class="form-group">
+            <label for="avatarUpload">📷 上传头像</label>
+            <input type="file" id="avatarUpload" name="avatar" accept="image/*">
+            <div class="avatar-preview" id="avatarPreview"></div>
+        </div>
+
+        <!-- 要求4：注册按钮为椭圆形（胶囊形）边角，样式见 components.css 中 .btn -->
+        <button type="submit" class="btn">注 册</button>
+        <div id="regMsg"></div>
+    </form>
+
+    <!-- ========== 要求7：访问"登录页面"的超级链接（链接伪类 :link/:visited/:hover/:active 见 register.css） ========== -->
+    <div class="login-link">
+        已有账号？<a href="index.html#login">前往登录页面 →</a>
+    </div>
+
+    <!-- ========== 背景音乐（沿用实验3功能） ========== -->
+    <div class="music-box">
+        <h3>🎵 背景音乐</h3>
+        <div class="form-group">
+            <label for="bgMusic">选择音乐文件:</label>
+            <input type="file" id="bgMusic" accept="audio/*" onchange="loadMusic()">
+        </div>
+        <button type="button" onclick="toggleMusic()" id="musicBtn" class="btn btn-compact">▶ 播放</button>
+        <div class="music-row music-row-spaced">
+            <span>🔈</span>
+            <input type="range" id="musicVol" min="0" max="1" step="0.1" value="0.5" oninput="setVol()">
+            <span>🔊</span>
+            <span id="volText">50%</span>
+        </div>
+    </div>
+</div>
+
+<div class="reg-footer">
+    &copy; 2026 图书馆管理系统 &nbsp;·&nbsp; <a href="index.html">返回首页</a>
+</div>
+
+<audio id="bgAudio" loop></audio>
+
+<script>
+    // ========== 注册进度条（沿用实验3） ==========
+    function updateProgress() {
+        const form = document.getElementById('registerForm');
+        const inputs = form.querySelectorAll('input:not([type="file"]):not([type="range"]), select');
+        let filled = 0, total = 0;
+        inputs.forEach(inp => {
+            total++;
+            if ((inp.type==='radio' && inp.checked) ||
+                (inp.type==='checkbox' && inp.checked) ||
+                (inp.type!=='radio' && inp.type!=='checkbox' && inp.value.trim()!=='')) {
+                filled++;
+            }
+        });
+        const pct = Math.round(filled / total * 100);
+        document.getElementById('regProgress').value = pct;
+        document.getElementById('progressText').textContent = pct + '%';
+    }
+    document.getElementById('registerForm').addEventListener('input', updateProgress);
+    document.getElementById('registerForm').addEventListener('change', updateProgress);
+
+    // ========== 头像预览（沿用实验3） ==========
+    document.getElementById('avatarUpload').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        const preview = document.getElementById('avatarPreview');
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = ev => { preview.innerHTML = '<img src="' + ev.target.result + '" alt="头像预览">'; };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    // ========== 注册提交（校验规则与要求5的 placeholder 提示保持一致） ==========
+    document.getElementById('registerForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const username  = document.getElementById('regUsername').value.trim();
+        const email     = document.getElementById('regEmail').value.trim();
+        const password  = document.getElementById('regPassword').value;
+        const confirm   = document.getElementById('regConfirm').value;
+        const birthday  = document.getElementById('regBirthday').value;
+        const gender    = document.querySelector('input[name="gender"]:checked')?.value;
+        const dept      = document.getElementById('regDept').value;
+        const memType   = document.getElementById('regMemType').value;
+
+        if (!username || !email || !password || !confirm || !birthday || !gender || !dept || !memType)
+            return showMsg('regMsg', '请填写所有必填项！', 'error');
+        if (!/^[A-Za-z][A-Za-z0-9_]{3,15}$/.test(username))
+            return showMsg('regMsg', '用户名须为4~16位、以字母开头，只能包含字母、数字或下划线！', 'error');
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+            return showMsg('regMsg', '请输入有效的邮箱地址！', 'error');
+        if (password.length < 6 || password.length > 16)
+            return showMsg('regMsg', '密码长度须为6~16位！', 'error');
+        if (/^[0-9]+$/.test(password) || /^[A-Za-z]+$/.test(password))
+            return showMsg('regMsg', '密码须同时包含字母和数字两种组合！', 'error');
+        if (password !== confirm)
+            return showMsg('regMsg', '两次输入的密码不一致！', 'error');
+
+        showMsg('regMsg', '注册成功！欢迎加入图书馆管理系统！', 'success');
+        setTimeout(() => alert('注册成功！\n\n用户名：' + username + '\n邮箱：' + email + '\n部门：' + dept + '\n会员类型：' + memType), 800);
+    });
+
+    function showMsg(id, msg, type) {
+        const el = document.getElementById(id);
+        el.innerHTML = '<div class="msg msg-' + type + '">' + msg + '</div>';
+    }
+
+    // ========== 背景音乐（沿用实验3） ==========
+    let playing = false;
+    const audio = document.getElementById('bgAudio');
+
+    function loadMusic() {
+        const f = document.getElementById('bgMusic').files[0];
+        if (f) { audio.src = URL.createObjectURL(f); setVol(); }
+    }
+    function toggleMusic() {
+        const btn = document.getElementById('musicBtn');
+        if (playing) { audio.pause(); btn.textContent = '▶ 播放'; playing = false; }
+        else if (audio.src) {
+            audio.play().then(() => { btn.textContent = '⏸ 暂停'; playing = true; })
+                .catch(() => alert('无法播放，请检查文件格式'));
+        } else alert('请先选择音乐文件！');
+    }
+    function setVol() {
+        const v = document.getElementById('musicVol').value;
+        audio.volume = v;
+        document.getElementById('volText').textContent = Math.round(v * 100) + '%';
+    }
+
+    // 初始化
+    document.addEventListener('DOMContentLoaded', () => updateProgress());
+</script>
+</body>
+</html>
